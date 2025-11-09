@@ -208,7 +208,3 @@ docker compose up -d
 - 检查 `.dockerignore` 是否忽略了 `unpackage` 目录
 - 验证构建产物路径：`unpackage/dist/build/web`
 
-## 🔗 相关项目
-
-- [后端项目](../contacts-backend) - Node.js 后端服务
-
