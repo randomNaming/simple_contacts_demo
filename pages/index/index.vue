@@ -42,6 +42,7 @@
 
 <script>
 import axios from "axios";
+import apiConfig from "@/utils/api.js";
 
 export default {
   data() {
@@ -68,24 +69,24 @@ export default {
   },
   methods: {
     async fetchContacts() {
-      const res = await axios.get("http://localhost:3000/contacts");
+      const res = await axios.get(apiConfig.getContacts());
       this.contacts = res.data;
     },
     async addContact() {
       if (!this.newContact.name || !this.newContact.phone) {
         return uni.showToast({ title: "请填写完整信息", icon: "none" });
       }
-      await axios.post("http://localhost:3000/contacts", this.newContact);
+      await axios.post(apiConfig.addContact(), this.newContact);
       this.newContact = { name: "", phone: "", avatar: "" };
       this.fetchContacts();
     },
     async deleteContact(contact) {
-      await axios.delete(`http://localhost:3000/contacts/${contact.id}`);
+      await axios.delete(apiConfig.deleteContact(contact.id));
       this.fetchContacts();
     },
     async togglePin(contact) {
       contact.pinned = !contact.pinned;
-      await axios.put(`http://localhost:3000/contacts/${contact.id}`, contact);
+      await axios.put(apiConfig.updateContact(contact.id), contact);
       this.fetchContacts();
     },
     chooseAvatar() {
@@ -94,7 +95,7 @@ export default {
         success: async (res) => {
           const filePath = res.tempFilePaths[0];
           const uploadRes = await uni.uploadFile({
-            url: "http://localhost:3000/upload",
+            url: apiConfig.uploadAvatar(),
             filePath,
             name: "avatar",
           });

@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import apiConfig from "@/utils/api.js";
+
 export default {
   data() {
     return {
@@ -21,7 +23,7 @@ export default {
   methods: {
     async addContact() {
       await uni.request({
-        url: 'http://localhost:3000/contacts',
+        url: apiConfig.addContact(),
         method: 'POST',
         data: {
           name: this.name,
