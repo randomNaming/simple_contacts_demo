@@ -212,7 +212,3 @@ docker compose up -d
 
 - [后端项目](../contacts-backend) - Node.js 后端服务
 
-## 📄 许可证
-
-MIT License
-
