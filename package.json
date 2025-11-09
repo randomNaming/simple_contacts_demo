@@ -1,0 +1,15 @@
+{
+  "name": "contacts_frontend",
+  "version": "1.0.0",
+  "description": "联系人管理前端项目",
+  "main": "main.js",
+  "scripts": {
+    "dev": "uni",
+    "build": "uni build"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {}
+}
+

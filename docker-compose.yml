@@ -1,0 +1,37 @@
+services:
+  backend:
+    build:
+      context: ../contacts-backend
+      dockerfile: Dockerfile
+    container_name: contacts-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - API_BASE_URL=http://YOUR_PUBLIC_IP:3000
+      - DATA_FILE=/app/data/contacts.json
+      - UPLOAD_DIR=/app/uploads
+    volumes:
+      - ../contacts-backend/data:/app/data
+      - ../contacts-backend/uploads:/app/uploads
+    restart: unless-stopped
+    networks:
+      - contacts-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: contacts-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - contacts-network
+
+networks:
+  contacts-network:
+    driver: bridge
+

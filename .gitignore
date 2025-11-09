@@ -1,0 +1,18 @@
+node_modules/
+npm-debug.log
+*.log
+.env
+.DS_Store
+
+# 构建产物（生产构建需要，但开发环境可以忽略）
+unpackage/dist/
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# HBuilderX 配置
+.hbuilderx/
+
